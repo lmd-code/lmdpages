@@ -1,0 +1,8 @@
+#  NO access
+User-agent: *
+Disallow: /assets/
+Disallow: /content/
+Disallow: /src/
+Disallow: /vendor/
+Disallow: /*.md$
+Disallow: /*.txt$

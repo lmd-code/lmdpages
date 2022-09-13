@@ -1,0 +1,41 @@
+{
+    "siteTitle": "LMD Pages",
+    "siteUrl": "http://localhost/lmdpages/",
+    "metaAuthor": "LMD-Code",
+    "scripts": {
+        "head": [
+            {"src": "\/assets\/scripts\/alpine-combined.min.js", "defer": true},
+            {"src": "\/assets\/scripts\/navbar.min.js"}
+        ]
+    },
+    "styles": [
+        "\/assets\/styles\/modcss.min.css",
+        "\/assets\/styles\/main.css"
+    ],
+    "imageDir": "\/assets\/imgs",
+    "pages": {
+        "index": {
+            "navLabel": "Home",
+            "pageTitle": "",
+            "metaDesc": "A simple website builder.",
+            "metaRobots": "noarchive,nosnippet"
+        },
+        "about": {
+            "navLabel": "About",
+            "pageTitle": "About",
+            "metaDesc": "This is an about page.",
+            "metaRobots": "noarchive,nosnippet"
+        },
+        "contact": {
+            "navLabel": "Contact",
+            "pageTitle": "Contact",
+            "metaDesc": "This is a contact page.",
+            "metaRobots": "noarchive,nosnippet",
+            "scripts": {
+                "head": [
+                    {"src": "\/assets\/scripts\/contact.min.js"}
+                ]
+            }
+        }
+    }
+}

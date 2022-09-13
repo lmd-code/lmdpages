@@ -1,2 +1,3 @@
-# lmdpages
+# LMD Pages
+
 Basic website builder
