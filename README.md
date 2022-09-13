@@ -10,7 +10,7 @@ For rapid and simple website builds.
 
 ## What is LMD Pages suitable for?
 
-- Small bochure/informational sites with fewer than ~10 pages.
+- Small brochure/informational sites with fewer than ~10 pages.
 - Sites with a flat architecture (no sub-pages).
 - Sites that do not update very often.
 - Sites where the client will not be editing/updating any content themselves.
@@ -20,7 +20,7 @@ For rapid and simple website builds.
 
 1. Download this repo to your local dev environment.
 2. In your code editor, open `/content/site-data.json` and edit for your site.
-3. Create/edit the page contents (inc. `_header.php`/`_footer.php` content).
+3. Create/edit page content (inc. `_header.php`/`_footer.php` content).
 4. Drop in your assets (images, CSS, scripts) to the appropriate `assets/*` directory.
 5. *Optional*: if running in a subdirectory, open up the root `.htaccess` file and comment-out each "Option 1" and uncomment each "Option 2" (replacing the 'your_dir' placeholders).
 6. Upload the contents of your repo copy to your server root (or subdirectory).
