@@ -198,6 +198,35 @@ class Markup
     }
 
     /**
+     * Render a data source
+     * 
+     * Loops through a data source (JSON file) and applies the `renderBlock()`
+     * method to each item.
+     *
+     * @param string $dataFile Path relative to the 'content' directory
+     * @param string $block Block file name (without extension) to render
+     *
+     * @return string
+     */
+    public static function renderData(string $dataFile, string $block): string
+    {
+        $out = '';
+
+        $filePath = self::$config::getRootPath() .'/content/' . $dataFile;
+
+        if (!file_exists($filePath)) return '';
+
+        $jsonContent = file_get_contents($filePath);
+		if ($data = json_decode($jsonContent, true)) {
+			foreach ($data as $item) {
+                $out .= self::renderBlock($block, $item);
+            } 
+		}
+
+        return $out;
+    }
+
+    /**
      * Render a content block
      * 
      * @param string $block Block file name (without extension)
@@ -214,6 +243,8 @@ class Markup
         if (count($data) > 0) {
             extract($data);
         }
+
+        $lmdpages = __CLASS__; // make $lmdpages available to blocks
 
         ob_start();
         require $file;

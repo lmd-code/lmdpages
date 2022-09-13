@@ -8,7 +8,6 @@
 	<meta name="description" content="<?=$lmdpages::metaDescription()?>">
 	<meta name="author" content="<?=$lmdpages::metaAuthor()?>">
 	<link rel="canonical" href="<?=$lmdpages::canonical()?>">
-    <!--<link rel="shortcut icon" href="/favicon.ico">-->
     <?=$lmdpages::scripts('head')?>
     <?=$lmdpages::styles()?>
 </head>
@@ -19,12 +18,12 @@
 </div>
 <div id="header-wrapper" style="background-image: url(<?=$lmdpages::imgDir()?>/header-bg.jpg)">
     <header>
-        <div class="header-logo">
+        <div class="header-title">
             <?=$lmdpages::siteTitle()?>
         </div>
         <div class="header-text">
-            <p>Quick, Easy and Basic Website Starter</p>
-            <p>PHP only, no database required</p>
+            <p>A demo site for LMD Pages</p>
+            <p>For rapid and simple website builds.</p>
         </div>
     </header>
     <nav id="mainNav" tabindex="-1" :class="{'menu-js': true}">

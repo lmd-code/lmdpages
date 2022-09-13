@@ -15,18 +15,18 @@ define('ROOT_PATH', rtrim(str_replace(DIRECTORY_SEPARATOR, '/', __DIR__), '/'));
 require ROOT_PATH . "/src/Config.php"; 
 require ROOT_PATH . "/src/Markup.php";
 
-// Initialise site config
-$config = new Config(ROOT_PATH);
+/** @var Config $config */
+$config = new Config(ROOT_PATH); // Initialise site config
 
-// Initialise site markup
-$lmdpages = new Markup($config);
+/** @var Markup $lmdpages  */
+$lmdpages = new Markup($config); // Initialise site markup
 
 // Check route for special actions
 switch ($config::getRoute()) {
     case 'error404':
         $config::error404();
         break;
-    
+
     default:
         break;
 }

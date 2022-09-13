@@ -1,6 +1,13 @@
 /**
  * Main CSS
  */
+:root {
+    --base-col: #012840;
+}
+
+h1, h2, h3, h4 {
+    color: var(--base-col);
+}
 
 /** Header */
 #header-wrapper {
@@ -10,7 +17,7 @@
     justify-content: space-between;
     align-content: center;
     align-items:  center;
-    min-height: 260px;
+    min-height: 240px;
     background-repeat: no-repeat;
     background-position: bottom;
     background-origin: content-box;
@@ -30,24 +37,19 @@ header {
     line-height: 1;
     font-size: 1rem;
 }
-.header-logo {
+.header-title {
     flex: 1;
     min-width: 300px;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 0;
     font-weight: 700;
+    font-size: 2.5em;
     text-align: center;
     color: #fff;
     line-height: 1.2;
-    text-shadow: 1px 1px 1px #000;
+    text-shadow: 0 0 10px #fff, 0 0 2px #000;
 }
-/*
-.header-logo > img {
-    width: 100%;
-    height: auto;
-}
-*/
 .header-text {
     flex: 1;
     min-width: 200px;
@@ -69,9 +71,11 @@ header {
 }
 
 @media screen and (min-width: 640px) {
-    .header-logo {
+    #header-wrapper {
+        min-height: 300px;
+    }
+    .header-title {
         margin: 1rem;
-        font-size: 2em;
     }
     .header-text {
         margin: 1rem calc(1rem + 10px) 1rem 1rem;
@@ -81,11 +85,21 @@ header {
 }
 
 @media screen and (min-width: 800px) {
-    .header-logo {
-        font-size: 3em;
-    }
     #header-wrapper {
         min-height: 360px;
+    }
+    .header-title {
+        margin: 2rem;
+        font-size: 3em;
+    }
+    .header-text {
+        font-size: 1.25em;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .header-title {
+        font-size: 4em;
     }
     .header-text {
         font-size: 1.5em;
@@ -97,9 +111,19 @@ nav {
     flex: 0 0 auto;
     width: 100%;
     margin: 0 auto;
-    border-bottom: 3px solid #006837;
-    background-color: rgba(255, 255, 255, 0.4);
+    border-bottom: 3px solid var(--base-col);
+    background-color: rgba(255, 255, 255, 0.5);
     line-height: 1;
+    --navbar-link: #000;
+    --navbar-link-hover: #ddd;
+    --navbar-link-hover-bg: rgba(1, 40, 64, 0.6);
+    --navbar-link-active: #fff;
+    --navbar-link-active-bg: rgba(7, 72, 91, 0.5);
+    --navbar-span: #fff;
+    --navbar-span-bg: var(--base-col);
+    --navbar-button-bg: transparent;
+    --navbar-button: #000000;
+    --navbar-js-bg: rgba(237, 237, 237, 1);
 }
 
 nav > ul {
@@ -120,21 +144,22 @@ nav > ul > li > a, nav > ul > li > span {
 }
 nav > ul > li > a {
     text-decoration: none;
-    color: #000;
+    color: var(--navbar-link);
 }
 nav > ul > li > a:hover, nav > ul > li > a:focus {
-    background-color: rgba(113, 167, 73, 0.6);
+    background-color: var(--navbar-link-hover-bg);
+    color: var(--navbar-link-hover);
 }
 nav > ul > li > a:focus {
 	outline: 2px dotted #202020;
 }
 nav > ul > li > a:active {
-    background-color: rgba(0, 104, 55, 0.5);
-    color: #fff;
+    background-color: var(--navbar-link-active-bg);
+    color: var(--navbar-link-active);
 }
 nav > ul > li > span {
-    background-color: #006837;
-    color: #fff;
+    background-color: var(--navbar-span-bg);
+    color: var(--navbar-span);
 }
 
 /** JS Nav */
@@ -149,8 +174,8 @@ nav > ul > li > span {
         border: none;
         border-radius: 0;
         padding: 0;
-        background-color: transparent;
-        color: var(--defaultcss-text-light);
+        background-color: var(--navbar-button-bg);
+        color: var(--navbar-button);
         font: inherit;
         font-variant: small-caps;
         font-size: 1.5rem;
@@ -180,7 +205,7 @@ nav > ul > li > span {
         left: 0;
         right: 1rem;
         z-index: 1000;
-        background-color: rgba(237, 237, 237, 1);
+        background-color: var(--navbar-js-bg);
         box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
     }
 
@@ -196,7 +221,8 @@ footer {
     background-color: #fff;
     color: #000;
     position: relative;
-    border-top: 3px solid #006837;
+    border-top: 3px solid var(--base-col);
+    text-align: center;
 }
 @media screen and (min-width: 640px) {
     footer {
@@ -241,7 +267,7 @@ main {
 	padding: 0.25rem;
 	transform: translateY(-200%);
 	transition: transform 0.3s;
-	background-color: #71A749;
+	background-color: var(--base-col);
 	color: #fff;
 }
 .skip-links:focus-within {
@@ -283,7 +309,7 @@ main {
 }
 .back-to-menu > a:focus {
     outline: 2px dotted #202020;
-    background-color: #71A749;
+    background-color: var(--base-col);
     color: #fff;
 }
 
@@ -299,41 +325,22 @@ main {
     margin: 1em 0;
     font-weight: 700;
     text-align: center;
+    color: var(--base-col);
 }
 .pullout > p {
     margin: 0;
     padding: 0;
 }
-.pullout > ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    color: #006837;
-}
-.pullout > ul > li {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-}
-.pullout > ul > li:not(:first-of-type):before {
-    content: '\2022';
-    display: inline-block;
-    margin: 0 0.25em;
-}
 
 @media screen and (min-width: 480px) {
     .pullout {
-        font-size: 1.1em;
-    }
-    .pullout > p > span {
-        display: block;
-        font-size: 1rem;
+        font-size: 1.25em;
     }
 }
 
 @media screen and (min-width: 640px) {
     .pullout {
-        font-size: 1.25em;
+        font-size: 1.5em;
     }
 }
 
@@ -356,5 +363,39 @@ main {
     }
     .columns-wrapper > .column.column-right {
         max-width: var(--col-right-w);
+    }
+}
+
+/** Specific Sections */
+
+.planets {
+    margin: 2em 0;
+}
+.planet {
+    margin: 4em 0;
+}
+.planet:first-of-type {
+    margin-top: 0;
+}
+.planet:last-of-type {
+    margin-bottom: 0;
+}
+.planet-image {
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+.planet-image > img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+}
+.planet-image > figcaption {
+    font-size: 0.75em;
+}
+
+@media screen and (min-width: 640px) {
+    .planet-image {
+        margin: 0;
     }
 }

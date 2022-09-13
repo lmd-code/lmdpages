@@ -1,6 +1,6 @@
 {
-    "siteTitle": "LMD Pages",
-    "siteUrl": "http://localhost/lmdpages/",
+    "siteTitle": "Planet Demo",
+    "siteUrl": "http://lmdpages.localhost",
     "metaAuthor": "LMD-Code",
     "scripts": {
         "head": [
@@ -17,13 +17,19 @@
         "index": {
             "navLabel": "Home",
             "pageTitle": "",
-            "metaDesc": "A simple website builder.",
+            "metaDesc": "Planet Demo: an example of an LMD Pages site.",
             "metaRobots": "noarchive,nosnippet"
         },
         "about": {
             "navLabel": "About",
             "pageTitle": "About",
             "metaDesc": "This is an about page.",
+            "metaRobots": "noarchive,nosnippet"
+        },
+        "planets": {
+            "navLabel": "Planets",
+            "pageTitle": "Planets",
+            "metaDesc": "All about the planets in our solar system.",
             "metaRobots": "noarchive,nosnippet"
         },
         "contact": {
