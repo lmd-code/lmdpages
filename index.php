@@ -15,8 +15,8 @@ define('ROOT_PATH', rtrim(str_replace(DIRECTORY_SEPARATOR, '/', __DIR__), '/'));
 require ROOT_PATH . "/src/Config.php"; 
 require ROOT_PATH . "/src/Markup.php";
 
-// Initlaie Config
-$config = new Config(ROOT_PATH, 'lmdpages');
+// Initialise site config
+$config = new Config(ROOT_PATH);
 
 // Initialise site markup
 $lmdpages = new Markup($config);

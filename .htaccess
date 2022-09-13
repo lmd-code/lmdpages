@@ -1,11 +1,20 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteBase /lmdpages/
+	
+	# Option 1 - in root directory
+	RewriteBase /
+	
+	# Option 2 - in sub directory
+	#RewriteBase /your_dir/
 
   	# If the request is for a file or directory that physically exists on the server,
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteCond %{REQUEST_FILENAME} !(favicon\.ico|robots\.txt)
 
-	RewriteRule ^(.*)$ /lmdpages/index.php [L,QSA]
+    # Option 1 - in root directory
+	RewriteRule ^(.*)$ index.php [L,QSA]
+	
+	# Option 2 - in sub directory
+	#RewriteRule ^(.*)$ /your_dir/index.php [L,QSA]
 </IfModule>
