@@ -1,6 +1,8 @@
 # LMD Pages
 
-For rapid and simple website builds.
+**Version:** 0.0.1
+
+For rapid and simple website builds, created to quick-start my own projects.
 
 - ✔️ Server requires PHP (ver. >= 7.4) with .htaccess enabled.
 - ✔️ Must have FTP access to server.
@@ -15,6 +17,10 @@ For rapid and simple website builds.
 - Sites that do not update very often.
 - Sites where the client will not be editing/updating any content themselves.
 - Sites with no need for user logins.
+
+Essentially this is a bare-bones website starter-kit without the overhead of either a database-driven content management system, or a fully-fledged static site generator.
+
+It's one step up from putting `<?php include('header_file.php'); ?>` on *every* page! :D
 
 ## Get Started
 
