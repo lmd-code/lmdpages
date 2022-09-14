@@ -1,3 +1,10 @@
+<?php namespace lmdcode\lmdpages;
+/**
+ * Page Header - this is a required file
+ * 
+ * @var Markup $lmdpages
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +37,9 @@
         <button id="menuBtn" @click="menuOpen=!menuOpen" :hidden="screenWidth >= maxWidth" :aria-expanded="menuOpen" type="button" aria-controls="menu" hidden>
             <span aria-label="Toggle menu">Menu</span>
         </button>
-        <ul id="menu" :hidden="!menuOpen"><?=$lmdpages::navigationMenu()?></ul>
+        <?=$lmdpages::navigationMenu([
+            'ul' => ['id' => 'menu', ':hidden' => '!menuOpen']
+        ])?>
     </nav>
 </div>
 

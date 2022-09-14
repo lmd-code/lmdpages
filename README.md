@@ -29,5 +29,5 @@ For rapid and simple website builds.
 ## @TODO
 
 - [ ] Get "LMD Contact" and "LMD Gallery" ready for public release to be easy drop-in solutions.
-- [ ] Add a method to `Markup` to return navigation items as an array of data for creating custom menus instead of forcing fixed markup.
+- [x] Add a method to `Markup` to return navigation items as an array of data for creating custom menus instead of forcing fixed markup.
 - [ ] Write up more detailed documentation.

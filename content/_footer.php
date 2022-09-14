@@ -1,3 +1,10 @@
+<?php namespace lmdcode\lmdpages;
+/**
+ * Page Footer - this is a required file
+ * 
+ * @var Markup $lmdpages
+ */
+?>
 </main>
 
 <footer>

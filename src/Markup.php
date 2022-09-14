@@ -171,30 +171,79 @@ class Markup
     }
 
     /**
-     * Render the main navigation menu
+     * Render the main navigation menu as a list
+     * 
+     * @param array $elementAttrs Custom attributes for HTML elements
      *
      * @return string
      */
-    public static function navigationMenu(): string
+    public static function navigationMenu(array $elementAttrs = []): string
     {
-        $currentPage = self::$config::getRoute();
+        $pages = self::getNavigationItems();
+        if (count($pages) < 1) return '';
 
-        $out = '';
-        foreach (self::$config::get('pages') as $key => $val) {
-            $title = (isset($val['navLabelTitle'])) ? ' title="' . $val['navLabelTitle'] . '"' : '';
+        // Valid HTML elements that can have custom attributes
+        $attrs = [
+            'ul' => '',
+            'li' => '',
+            'a' => '',
+            'span' => '',
+        ];
 
-            $out .= "<li>";
+        $ignoreAttrs = ['title', 'href']; // do not allow these to be customised
 
-            if ($key === $currentPage) {
-                $out .= "<span{$title}>{$val['navLabel']}</span>";
+        // Build attributes for HTML elements
+        foreach ($elementAttrs  as $ele => $attributes) {
+            if (!array_key_exists($ele, $attrs) || !is_array($attributes)) continue;
+
+            foreach ($attributes as $key => $val) {
+                if (!is_string($key) || !is_string($val) || in_array($key, $ignoreAttrs)) continue;
+
+                $attrs[$ele] .= ' '.$key.'="' . htmlentities($val, ENT_COMPAT, null, false) . '"';
+            }
+        }
+
+        // Build menu
+        $out = "<ul{$attrs['ul']}>";
+        foreach ($pages as $key => $val) {
+            $title = ($val['title'] !== '') ? ' title="' . $val['title'] . '"' : '';
+
+            $out .= "<li{$attrs['li']}>";
+
+            if ($val['isCurrent']) {
+                $out .= "<span{$attrs['span']}{$title}>{$val['text']}</span>";
             } else {
-                $out .= "<a href=\"" . self::getUrl($key) . "\"{$title}>{$val['navLabel']}</a>";
+                $out .= "<a href=\"{$val['link']}\"{$attrs['a']}{$title}>{$val['text']}</a>";
             }
 
             $out .= "</li>";
         }
+        $out .= "</ul>";
 
         return $out;
+    }
+
+    /**
+     * Return navigation items
+     *
+     * @return array
+     */
+    public static function getNavigationItems(): array
+    {
+        $currentPage = self::$config::getRoute();
+
+        $pages = [];
+
+        foreach (self::$config::get('pages') as $key => $val) {
+            $pages[$key] = [
+                'link' => self::getUrl($key),
+                'text' => $val['navLabel'],
+                'title' => (isset($val['navLabelTitle']) ? $val['navLabelTitle'] : ''),
+                'isCurrent' => ($currentPage === $key),
+            ];
+        }
+
+        return $pages;
     }
 
     /**

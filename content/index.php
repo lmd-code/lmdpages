@@ -1,3 +1,10 @@
+<?php namespace lmdcode\lmdpages;
+/**
+ * Index Page - this is a required file
+ * 
+ * @var Markup $lmdpages
+ */
+?>
 <h1 class="visually-hidden"><?=$lmdpages::siteTitle()?></h1>
 
 <div class="pullout">
