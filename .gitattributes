@@ -1,1 +1,11 @@
+# Force language identification
 *.php linguist-language=PHP
+
+# Exclude from diffs
+*.min.js linguist-generated
+
+# Exclude files from exporting
+.github        export-ignore
+.gitattributes export-ignore
+.gitignore     export-ignore
+.gitkeep       export-ignore
