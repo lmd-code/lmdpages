@@ -179,7 +179,7 @@ class Markup
      */
     public static function navigationMenu(array $elementAttrs = []): string
     {
-        $pages = self::getNavigationItems();
+        $pages = self::getMenuItems();
         if (count($pages) < 1) return '';
 
         // Valid HTML elements that can have custom attributes
@@ -224,11 +224,11 @@ class Markup
     }
 
     /**
-     * Return navigation items
+     * Return menu items
      *
      * @return array
      */
-    public static function getNavigationItems(): array
+    public static function getMenuItems(): array
     {
         $currentPage = self::$config::getRoute();
 
