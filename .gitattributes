@@ -3,6 +3,7 @@
 
 # Exclude from diffs
 *.min.js linguist-generated
+*.min.css linguist-generated
 
 # Exclude files from exporting
 .github        export-ignore
