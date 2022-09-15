@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * LMD Pages 
+ * (c) LMD, 2022
+ * https://github.com/lmd-code/lmdpages
+ */
+
 declare(strict_types=1);
 
 namespace lmdcode\lmdpages;
@@ -39,6 +46,19 @@ class Config
 	private static $rootDir;
 
 	/**
+	 * Folders relative to root
+	 * @var array
+	 */
+	private static $dirs = [
+		'assets' => '/assets',
+		'images' => '/assets/images',
+		'scripts' => '/assets/scripts',
+		'styles' => '/assets/styles',
+		'content' => '/content',
+		'blocks' => '/content/blocks',
+	];
+
+	/**
 	 * Error page meta data
 	 * @var array<string, string>
 	 */
@@ -50,10 +70,10 @@ class Config
 	];
 
 	/**
-	 * Default site data location of JSON file
+	 * Default site data JSON file
 	 * @var string
 	 */
-	private static $defaultSiteData = '/content/site-data.json';
+	private static $defaultJson = 'site-data.json';
 
 	/**
 	 * Constructor
@@ -66,7 +86,7 @@ class Config
 	{
 		self::$rootPath = $rootPath;
 		self::$rootDir = trim($rootDir, '/');
-		$dataSrc = ($dataSrc !== '') ? $dataSrc : self::$defaultSiteData;
+		$dataSrc = ($dataSrc !== '') ? $dataSrc : self::$dirs['content'] . '/' . self::$defaultJson;
 		self::$data = self::getSiteData($dataSrc);
 		self::$route = self::getRoute();
 	}
@@ -92,7 +112,7 @@ class Config
 			// If it isn't a valid page or the file doesn't exist, set to error404
             if (
 				!array_key_exists($route, self::$data['pages']) ||
-				!file_exists(self::$rootPath . '/content/' . $route . '.php')
+				!file_exists(self::$rootPath . self::$dirs['content'] . '/' . $route . '.php')
 			) {
                 $route = 'error404';
 			}
@@ -104,7 +124,7 @@ class Config
     }
 
 	/** 
-	 * Get root path
+	 * Get absolute file path to root
 	 * 
 	 * @return string
 	 */
@@ -114,13 +134,28 @@ class Config
 	}
 
 	/**
-	 * Get root directory (if in subdir of site root)
+	 * Get directory path
 	 *
+	 * @param string $name Directory name (returns root dir if empty).
+	 * @param bool $fullPath Get full (absolute) file path
+	 * 
 	 * @return string
 	 */
-	public static function getDir(): string
+	public static function getDir(string $name = '', bool $fullPath = false): string
 	{
-		return self::$rootDir;
+		if ($fullPath) {
+			$path = rtrim(self::$rootPath, '/') . '/';
+		} else {
+			$path = '/' . (self::$rootDir !== '' ? self::$rootDir . '/' : '');
+		}
+
+		if ($name === '') return $path;
+
+		if (array_key_exists($name, self::$dirs)) {
+			return $path . ltrim(self::$dirs[$name], '/');
+		}
+
+		return '';
 	}
 
 	/**
@@ -173,7 +208,7 @@ class Config
 		http_response_code(404);
 
 		// If there is no custom template file, echo default markup and exit
-		if (!file_exists(self::$rootPath . '/content/error404.php')) {
+		if (!file_exists(self::$rootPath . self::$dirs['content'] . '/error404.php')) {
 			echo '<html><head><title>' . self::$errorPage['pageTitle'] . '</title>'
 			. '<meta name="robots" content="'. self::$errorPage['metaRobots'] .'">'
 			. '</head><body><h1>' . self::$errorPage['pageTitle'] . '</h1>'

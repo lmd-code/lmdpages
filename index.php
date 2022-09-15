@@ -1,7 +1,12 @@
 <?php
 /**
- * Main Index/Bootstrap File
- * LMD-Code (c) 2022
+ * LMD Pages Bootstrap/Index
+ * 
+ * LMD Pages 
+ * (c) LMD, 2022
+ * https://github.com/lmd-code/lmdpages
+ * 
+ * @version 0.1.0
  */
 
 declare(strict_types=1);

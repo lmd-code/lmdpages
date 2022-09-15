@@ -1,6 +1,6 @@
 # LMD Pages
 
-**Version:** 0.0.1
+**Version:** 0.1.0 (dev release, things likely to change)
 
 For rapid and simple website builds, created to quick-start my own projects.
 
@@ -20,7 +20,7 @@ For rapid and simple website builds, created to quick-start my own projects.
 
 Essentially this is a bare-bones website starter-kit without the overhead of either a database-driven content management system, or a fully-fledged static site generator.
 
-It's one step up from putting `<?php include('header_file.php'); ?>` on *every* page! :D
+It's one step up from putting `<?php include('header_file.php'); ?>` at the top of *every* page! :-D
 
 ## Get Started
 
@@ -31,9 +31,3 @@ It's one step up from putting `<?php include('header_file.php'); ?>` on *every* 
 5. *Optional*: if running in a subdirectory, open up the root `.htaccess` file and comment-out each "Option 1" and uncomment each "Option 2" (replacing the 'your_dir' placeholders).
 6. Upload the contents of your repo copy to your server root (or subdirectory).
     - You can ignore the .git related files (e.g. `.gitignore`).
-
-## @TODO
-
-- [ ] Get "LMD Contact" and "LMD Gallery" ready for public release to be easy drop-in solutions.
-- [x] Add a method to `Markup` to return navigation items as an array of data for creating custom menus instead of forcing fixed markup.
-- [ ] Write up more detailed documentation.

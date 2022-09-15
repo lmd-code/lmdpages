@@ -1,1 +1,13 @@
+# Do not show folder index
 Options -Indexes
+
+# Block direct access to PHP files in this folder (and subfolders)
+<FilesMatch "\.(php)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

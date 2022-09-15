@@ -3,7 +3,7 @@
 <div class="columns-wrapper" style="--col-right-w: 30%;">
     <div class="column">
         <h2>Contact Form</h2>
-        <p>A plug'n'play contact form can be inserted here -- it's not quite ready for public release.</p>
+        <p>"LMD Contact" form can be inserted here, when its ready for release.</p>
     </div>
     <div class="column column-right">
     <h2>Post</h2>

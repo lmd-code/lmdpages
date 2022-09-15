@@ -1,5 +1,7 @@
+# Do not show folder index
 Options -Indexes
 
+# Block direct access to JSON/PHP/TXT files in this folder (and subfolders)
 <FilesMatch "\.(json|php|txt)$">
   <IfModule mod_authz_core.c>
     Require all denied

@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * LMD Pages 
+ * (c) LMD, 2022
+ * https://github.com/lmd-code/lmdpages
+ */
+
 declare(strict_types=1);
 
 namespace lmdcode\lmdpages;
@@ -31,7 +38,7 @@ class Markup
      */
     public static function canonical(): string
     {
-        return trim(self::$config::get('siteUrl'), '/') . '/' . self::$config::getRoute();
+        return self::getUrl(null, true);
     }
 
     /**
@@ -137,12 +144,12 @@ class Markup
             }
         }
 
+        $scriptsDir = self::$config::getDir('scripts');
         $out = "";
         foreach ($scripts as $script) {
-            $dir = (self::$config::getDir() !== '') ? '/'. self::$config::getDir() : '';
             $out .= "\t<script "
             . ((isset($script['defer']) && $script['defer'] === true) ? 'defer ' : '')
-            . "src=\"{$dir}{$script['src']}\"></script>\n";
+            . "src=\"{$scriptsDir}/{$script['src']}\"></script>\n";
         }
 
         return ltrim($out);
@@ -161,10 +168,10 @@ class Markup
             $styles = array_merge($styles, self::$config::getPage('styles'));
         }
 
+        $stylesDir = self::$config::getDir('styles');
         $out = "";
         foreach ($styles as $style) {
-            $dir = (self::$config::getDir() !== '') ? '/'. self::$config::getDir() : '';
-            $out .= "\t<link href=\"{$dir}{$style}\" rel=\"stylesheet\">\n";
+            $out .= "\t<link href=\"{$stylesDir}/{$style}\" rel=\"stylesheet\">\n";
         }
 
         return ltrim($out);
@@ -261,7 +268,9 @@ class Markup
     {
         $out = '';
 
-        $filePath = self::$config::getRootPath() .'/content/' . $dataFile;
+        $dataFile = '/'. ltrim($dataFile, '/');
+
+        $filePath = self::$config::getDir('content', true) . $dataFile;
 
         if (!file_exists($filePath)) return '';
 
@@ -285,7 +294,9 @@ class Markup
      */
     public static function renderBlock(string $block, array $data = []): string
     {
-        $file = self::$config::getRootPath() . '/content/blocks/' . $block . '.php';
+        $block = '/' . preg_replace('/\.php$/i', '', trim($block, ' /'));
+
+        $file = self::$config::getDir('blocks', true) . $block . '.php';
 
         if (!file_exists($file)) return '';
 
@@ -310,8 +321,7 @@ class Markup
      */
     public static function imgDir(): string
     {
-        $dir = (self::$config::getDir() !== '') ? '/' . self::$config::getDir() : '';
-        return $dir . self::$config::get('imageDir');
+        return self::$config::getDir('images');
     }
 
     /**
@@ -324,16 +334,20 @@ class Markup
      */
     public static function getUrl(?string $route = null, bool $full = false): string
     {
+        // Get current page route if none specified
         $route = (is_null($route) || $route === '') ? self::$config::getRoute() : $route;
 
         if (array_key_exists($route, self::$config::get('pages'))) {
-            $dir = (self::$config::getDir() !== '') ? self::$config::getDir() . '/' : '';
-            $route = ($route === 'index') ? '' : $route; // home page
+            // Check if route is actually the home page
+            $route = ($route === 'index') ? '' : $route;
 
-            return (($full) ? self::$config::get('siteUrl') : '') . '/' . $dir . $route;
+            // Get full URL if requested
+            $fullUrl = $full ? trim(self::$config::get('siteUrl'), '/') : '';
+
+            return $fullUrl . self::$config::getDir() . $route;
         }
 
-        return '';
+        return ''; // inalid page route
     }
 
     /**
