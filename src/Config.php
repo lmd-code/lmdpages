@@ -34,6 +34,18 @@ class Config
 	private static $page;
 
 	/**
+	 * Scripts
+	 * @var array
+	 */
+	private static $scripts;
+
+	/**
+	 * Styles
+	 * @var array
+	 */
+	private static $styles;
+
+	/**
 	 * Absolute path to root folder
 	 * @var string
 	 */
@@ -195,6 +207,52 @@ class Config
 		if ($key === '') return self::$page;
 		if (array_key_exists($key, self::$page)) return self::$page[$key];
 		return null;
+	}
+
+	/**
+	 * Get scripts from site data
+	 *
+	 * @return array
+	 */
+	public static function getScripts(): array
+	{
+		if (!is_array(self::$scripts)) {
+			$globalScripts = (!empty(self::get('scripts')) ? self::get('scripts') : []);
+
+			$pageScripts = [];
+			foreach (self::get('pages') as $key => $val) {
+				if (empty($val['scripts'])) continue; // skip if there are no page scripts
+
+				$pageScripts[$key] = $val['scripts'];
+			}
+
+			self::$scripts = ['global' => $globalScripts, 'page' => $pageScripts];
+		}
+
+		return self::$scripts;
+	}
+
+	/**
+	 * Get styles from site data
+	 *
+	 * @return array
+	 */
+	public static function getStyles(): array
+	{
+		if (!is_array(self::$styles)) {
+			$globalStyles = (!empty(self::get('styles')) ? self::get('styles') : []);
+			
+			$pageStyles = [];
+			foreach (self::get('pages') as $key => $val) {
+				if (empty($val['styles'])) continue; // skip if there are no page styles
+
+				$pageStyles[$key] = $val['styles'];
+			}
+
+			self::$styles = ['global' => $globalStyles, 'page' => $pageStyles];
+		}
+
+		return self::$styles;
 	}
 
 	/**

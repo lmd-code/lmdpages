@@ -38,7 +38,10 @@
                 "head": [
                     {"src": "contact.js"}
                 ]
-            }
+            },
+            "styles": [
+                "contact.css"
+            ]
         }
     }
 }

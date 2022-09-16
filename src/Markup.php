@@ -120,37 +120,33 @@ class Markup
      */
     public static function scripts(string $loc = 'head'): string
     {
-        $scripts = [];
+        if (!in_array($loc, ['head', 'foot'])) return ''; // not a valid location
 
-        $globalScripts = self::$config::get('scripts');
-        $pageScripts = self::$config::getPage('scripts');
+        $scriptsDir = self::$config::getDir('scripts'); // scripts folder
+        $currentPage = self::$config::getRoute(); // current page
+        $scripts = self::$config::getScripts(); // get all scripts (global/page)
 
-        if ($loc === 'head') {
-            if (!empty($globalScripts['head'])) {
-                $scripts = array_merge($scripts, $globalScripts['head']);
-            }
-
-            if (!empty($pageScripts['head'])) {
-                $scripts = array_merge($scripts, $pageScripts['head']);
-            }
-        }
-
-        if ($loc === 'foot') {
-            if (!empty($globalScripts['foot'])) {
-                $scripts = array_merge($scripts, $globalScripts['foot']);
-            }
-
-            if (!empty($pageScripts['foot'])) {
-                $scripts = array_merge($scripts, $pageScripts['foot']);
-            }
-        }
-
-        $scriptsDir = self::$config::getDir('scripts');
         $out = "";
-        foreach ($scripts as $script) {
-            $out .= "\t<script "
-            . ((isset($script['defer']) && $script['defer'] === true) ? 'defer ' : '')
-            . "src=\"{$scriptsDir}/{$script['src']}\"></script>\n";
+
+        // Global scripts
+        if (array_key_exists($loc, $scripts['global'])) {
+            foreach ($scripts['global'][$loc] as $script) {
+                $out .= "\t<script "
+                . ((isset($script['defer']) && $script['defer'] === true) ? 'defer ' : '')
+                . "src=\"{$scriptsDir}/{$script['src']}\"></script>\n";
+            }
+        }
+
+        // Scripts for current page
+        if (
+            array_key_exists($currentPage, $scripts['page'])
+            && array_key_exists($loc, $scripts['page'][$currentPage])
+        ) {
+            foreach ($scripts['page'][$currentPage][$loc] as $script) {
+                $out .= "\t<script "
+                . ((isset($script['defer']) && $script['defer'] === true) ? 'defer ' : '')
+                . "src=\"{$scriptsDir}/{$script['src']}\"></script>\n";
+            }
         }
 
         return ltrim($out);
@@ -163,16 +159,22 @@ class Markup
      */
     public static function styles(): string
     {
-        $styles = !empty(self::$config::get('styles')) ? self::$config::get('styles') : [];
+        $stylesDir = self::$config::getDir('styles'); // style folder
+        $currentPage = self::$config::getRoute(); // current page
+        $styles = self::$config::getStyles(); // get all styles (global/page)
 
-        if (!empty(self::$config::getPage('styles'))) {
-            $styles = array_merge($styles, self::$config::getPage('styles'));
+        $out = "";
+
+        // Global styles
+        foreach ($styles['global'] as $style) {
+            $out .= "\t<link href=\"{$stylesDir}/{$style}\" rel=\"stylesheet\">\n";
         }
 
-        $stylesDir = self::$config::getDir('styles');
-        $out = "";
-        foreach ($styles as $style) {
-            $out .= "\t<link href=\"{$stylesDir}/{$style}\" rel=\"stylesheet\">\n";
+        // Styles for current page
+        if (array_key_exists($currentPage, $styles['page'])) {
+            foreach ($styles['page'][$currentPage] as $style) {
+                $out .= "\t<link href=\"{$stylesDir}/{$style}\" rel=\"stylesheet\">\n";
+            }
         }
 
         return ltrim($out);

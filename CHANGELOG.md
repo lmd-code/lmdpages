@@ -6,12 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Added `Config::getScripts()` method to accommodate refactoring of `Markup::scripts()`.
+- Added `Config::getStyles()` method to accommodate refactoring of `Markup::styles()`.
+- Can now specify stylesheets for a single page in `contents/site-data.json`.
+- Added `contact.css` file to `assets/styles/` folder to demonstrate single page stylesheet.
+
 ## [0.2.0] - 22-09-16
 
 ### Changed
 
-- Added param to 'Markup::pageTitle()' to specify if site title should appended.
-- Stripped back the examples in the 'contents' and 'assets' folders to remove any unrelated dependencies.
+- Added param to `Markup::pageTitle()` to specify if site title should appended.
+- Stripped back the examples in the `contents` and `assets` folders to remove any unrelated dependencies.
 
 ## [0.1.0] - 2022-09-15
 
