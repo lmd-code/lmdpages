@@ -1,6 +1,5 @@
 ##################################################
 # LMD PAGES HTACCESS DIRECTIVES
-# @ver 0.1.0
 ##################################################
 <IfModule mod_rewrite.c>
 	RewriteEngine On

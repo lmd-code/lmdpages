@@ -6,7 +6,7 @@
  * (c) LMD, 2022
  * https://github.com/lmd-code/lmdpages
  * 
- * @version 0.1.0
+ * @version 0.2.0
  */
 
 declare(strict_types=1);

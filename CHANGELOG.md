@@ -6,11 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.2.0] - 22-09-16
+
+### Changed
+
+- Added param to 'Markup::pageTitle()' to specify if site title should appended.
+- Stripped back the examples in the 'contents' and 'assets' folders to remove any unrelated dependencies.
+
 ## [0.1.0] - 2022-09-15
 
 ### Added
 
 - First functioning developmental release (things are likely to change).
 
-[Unreleased]: https://github.com/lmd-code/lmdpages/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/lmd-code/lmdpages/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/lmd-code/lmdpages/releases/tag/v0.2.0
 [0.1.0]: https://github.com/lmd-code/lmdpages/releases/tag/v0.1.0
