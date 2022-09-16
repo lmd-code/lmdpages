@@ -1,4 +1,4 @@
-<h1>About Us</h1>
+<h1><?=$lmdpages::pageTitle()?></h1>
 
 <p>Tempor diam lorem lorem vero amet. Dolore sit aliquyam diam eirmod justo. Sed stet diam et amet dolor nonumy diam rebum stet. Erat accusam et sed diam diam ipsum dolores et lorem, sadipscing justo stet et erat sea diam dolore vero ipsum, dolor magna invidunt elitr sadipscing sed nonumy rebum. Elitr at et dolor ea. Dolore tempor invidunt sit nonumy lorem, ut rebum at aliquyam et eos labore dolor. Kasd at ipsum dolor et ipsum stet. Ea sea takimata dolores dolor justo, sed et elitr no vero nonumy sed et elitr. Diam accusam diam ut tempor lorem dolor. Tempor et.</p>
 

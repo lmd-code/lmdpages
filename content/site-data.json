@@ -4,41 +4,39 @@
     "metaAuthor": "LMD-Code",
     "scripts": {
         "head": [
-            {"src": "alpine-combined.min.js", "defer": true},
-            {"src": "navbar.min.js"}
+            {"src": "main.js", "defer": false}
         ]
     },
     "styles": [
-        "modcss.min.css",
         "main.css"
     ],
     "pages": {
         "index": {
             "navLabel": "Home",
-            "pageTitle": "",
+            "pageTitle": "Welcome to LMD Pages",
             "metaDesc": "LMD Pages: an example of an LMD Pages site.",
             "metaRobots": "noarchive,nosnippet"
         },
         "about": {
             "navLabel": "About",
-            "pageTitle": "About",
+            "pageTitle": "About Us",
             "metaDesc": "This is an about page.",
             "metaRobots": "noarchive,nosnippet"
         },
-        "planets": {
-            "navLabel": "Planets",
-            "pageTitle": "Planets",
-            "metaDesc": "All about the planets in our solar system.",
+        "faqs": {
+            "navLabel": "FAQs",
+            "pageTitle": "Frequently Asked Questions",
+            "metaDesc": "This is an FAQ page.",
             "metaRobots": "noarchive,nosnippet"
         },
         "contact": {
             "navLabel": "Contact",
-            "pageTitle": "Contact",
+            "pageTitle": "Contact Us",
             "metaDesc": "This is a contact page.",
             "metaRobots": "noarchive,nosnippet",
             "scripts": {
                 "head": [
-                    {"src": "contact.min.js"}
+                    {"src": "contact.js"}
                 ]
             }
         }

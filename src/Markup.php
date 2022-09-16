@@ -58,18 +58,19 @@ class Markup
     /**
      * Page title
      *
+     * @param boolean $incSiteTitle Include the site title after page title (for <title> tag)
      * @param string $sep Separator between page title and site title (inc. spaces)
      *
      * @return string
      */
-    public static function pageTitle(string $sep = ' - '): string
+    public static function pageTitle(bool $incSiteTitle = false, string $sep = ' - '): string
     {
         $title = "";
         if (!empty(self::$config::getPage('pageTitle'))) {
-            $title = self::$config::getPage('pageTitle') . $sep;
+            $title = self::$config::getPage('pageTitle');
         } 
 
-        return $title . self::siteTitle();
+        return $title . ($incSiteTitle ? $sep . self::siteTitle() : '');
     }
     
     /**
@@ -352,6 +353,9 @@ class Markup
 
     /**
      * Obfuscate an email address string
+     * 
+     * This method works in conjunction with the `contact.js` file in the 
+     * `assets/scripts/` folder.
      *
      * @param string $email The email address to obfuscate
      * @param boolean $isLink Make the email a clickable link (default: true)

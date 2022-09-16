@@ -1,3 +1,6 @@
+/**
+ * Convert obsfuscated email address into either plain text or clickable link
+ */
 function mClick() {
 	let contacts = document.querySelectorAll('[data-eod]');
 
@@ -39,6 +42,7 @@ function mClick() {
 	}
 }
 
+// Run when DOM content is loaded
 window.addEventListener('DOMContentLoaded', () => {
 	mClick();
 });
