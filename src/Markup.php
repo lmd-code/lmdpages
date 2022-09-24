@@ -1,7 +1,7 @@
 <?php
 
 /**
- * LMD Pages 
+ * LMD Pages
  * (c) LMD, 2022
  * https://github.com/lmd-code/lmdpages
  */
@@ -68,11 +68,11 @@ class Markup
         $title = "";
         if (!empty(self::$config::getPage('pageTitle'))) {
             $title = self::$config::getPage('pageTitle');
-        } 
+        }
 
         return $title . ($incSiteTitle ? $sep . self::siteTitle() : '');
     }
-    
+
     /**
      * Page meta description
      *
@@ -82,7 +82,7 @@ class Markup
     {
         return self::$config::getPage('metaDesc');
     }
-    
+
     /**
      * Page meta robots
      *
@@ -103,7 +103,7 @@ class Markup
         if (!empty(self::$config::getPage('metaAuthor'))) {
             return self::$config::getPage('metaRobots');
         }
-        
+
         if (!empty(self::$config::get('metaAuthor'))) {
             return self::$config::get('metaAuthor');
         }
@@ -120,7 +120,9 @@ class Markup
      */
     public static function scripts(string $loc = 'head'): string
     {
-        if (!in_array($loc, ['head', 'foot'])) return ''; // not a valid location
+        if (!in_array($loc, ['head', 'foot'])) {
+            return ''; // not a valid location
+        }
 
         $scriptsDir = self::$config::getDir('scripts'); // scripts folder
         $currentPage = self::$config::getRoute(); // current page
@@ -182,7 +184,7 @@ class Markup
 
     /**
      * Render the main navigation menu as a list
-     * 
+     *
      * @param array $elementAttrs Custom attributes for HTML elements
      *
      * @return string
@@ -190,7 +192,9 @@ class Markup
     public static function navigationMenu(array $elementAttrs = []): string
     {
         $pages = self::getMenuItems();
-        if (count($pages) < 1) return '';
+        if (count($pages) < 1) {
+            return '';
+        }
 
         // Valid HTML elements that can have custom attributes
         $attrs = [
@@ -203,13 +207,17 @@ class Markup
         $ignoreAttrs = ['title', 'href']; // do not allow these to be customised
 
         // Build attributes for HTML elements
-        foreach ($elementAttrs  as $ele => $attributes) {
-            if (!array_key_exists($ele, $attrs) || !is_array($attributes)) continue;
+        foreach ($elementAttrs as $ele => $attributes) {
+            if (!array_key_exists($ele, $attrs) || !is_array($attributes)) {
+                continue;
+            }
 
             foreach ($attributes as $key => $val) {
-                if (!is_string($key) || !is_string($val) || in_array($key, $ignoreAttrs)) continue;
+                if (!is_string($key) || !is_string($val) || in_array($key, $ignoreAttrs)) {
+                    continue;
+                }
 
-                $attrs[$ele] .= ' '.$key.'="' . htmlentities($val, ENT_COMPAT, null, false) . '"';
+                $attrs[$ele] .= ' ' . $key . '="' . htmlentities($val, ENT_COMPAT, null, false) . '"';
             }
         }
 
@@ -258,7 +266,7 @@ class Markup
 
     /**
      * Render a data source
-     * 
+     *
      * Loops through a data source (JSON file) and applies the `renderBlock()`
      * method to each item.
      *
@@ -271,29 +279,31 @@ class Markup
     {
         $out = '';
 
-        $dataFile = '/'. ltrim($dataFile, '/');
+        $dataFile = '/' . ltrim($dataFile, '/');
 
         $filePath = self::$config::getDir('content', true) . $dataFile;
 
-        if (!file_exists($filePath)) return '';
+        if (!file_exists($filePath)) {
+            return '';
+        }
 
         $jsonContent = file_get_contents($filePath);
-		if ($data = json_decode($jsonContent, true)) {
-			foreach ($data as $item) {
+        if ($data = json_decode($jsonContent, true)) {
+            foreach ($data as $item) {
                 $out .= self::renderBlock($block, $item);
-            } 
-		}
+            }
+        }
 
         return $out;
     }
 
     /**
      * Render a content block
-     * 
+     *
      * @param string $block Block file name (without extension)
      * @param array $data Any data key/vals to be extracted as vars
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public static function renderBlock(string $block, array $data = []): string
     {
@@ -301,7 +311,9 @@ class Markup
 
         $file = self::$config::getDir('blocks', true) . $block . '.php';
 
-        if (!file_exists($file)) return '';
+        if (!file_exists($file)) {
+            return '';
+        }
 
         if (count($data) > 0) {
             extract($data);
@@ -355,8 +367,8 @@ class Markup
 
     /**
      * Obfuscate an email address string
-     * 
-     * This method works in conjunction with the `contact.js` file in the 
+     *
+     * This method works in conjunction with the `contact.js` file in the
      * `assets/scripts/` folder.
      *
      * @param string $email The email address to obfuscate
@@ -370,7 +382,7 @@ class Markup
         $safeEmail = $to . " &#91;AT&#93; " . str_replace('.', ' &#91;DOT&#93; ', $at);
         $dataEmail = str_replace('.', '|', $at);
 
-        $out = '<span data-eod="' . $dataEmail . '" data-eoa="'.$to.'" data-eol="'
+        $out = '<span data-eod="' . $dataEmail . '" data-eoa="' . $to . '" data-eol="'
         . ($isLink ? 'true' : '') . '">' . $safeEmail . '</span>';
 
         return $out;

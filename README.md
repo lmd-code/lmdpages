@@ -1,6 +1,6 @@
 # LMD Pages
 
-**Version:** 0.2.0 (dev release, things likely to change)
+**DEV RELEASE:** things likely to change)
 
 For rapid and simple website builds, created to quick-start my own projects.
 

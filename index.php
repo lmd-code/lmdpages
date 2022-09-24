@@ -1,27 +1,28 @@
 <?php
+
 /**
  * LMD Pages Bootstrap/Index
- * 
- * LMD Pages 
+ *
+ * LMD Pages
  * (c) LMD, 2022
  * https://github.com/lmd-code/lmdpages
- * 
- * @version 0.2.0
+ *
+ * @version 0.2.1
  */
 
 declare(strict_types=1);
 
 namespace lmdcode\lmdpages;
 
-// Define global root path constant
-define('ROOT_PATH', rtrim(str_replace(DIRECTORY_SEPARATOR, '/', __DIR__), '/'));
+// Get root filepath
+$root_path = rtrim(str_replace(DIRECTORY_SEPARATOR, '/', __DIR__), '/');
 
 // Includes
-require ROOT_PATH . "/src/Config.php"; 
-require ROOT_PATH . "/src/Markup.php";
+require $root_path . "/src/Config.php";
+require $root_path . "/src/Markup.php";
 
 /** @var Config $config */
-$config = new Config(ROOT_PATH); // Initialise site config
+$config = new Config($root_path); // Initialise site config
 
 /** @var Markup $lmdpages  */
 $lmdpages = new Markup($config); // Initialise site markup
@@ -37,6 +38,6 @@ switch ($config::getRoute()) {
 }
 
 // Render content
-require ROOT_PATH . "/content/_header.php";
-require ROOT_PATH . "/content/" . $config::getRoute() . '.php';
-require ROOT_PATH . "/content/_footer.php";
+require $root_path . "/content/_header.php";
+require $root_path . "/content/" . $config::getRoute() . '.php';
+require $root_path . "/content/_footer.php";
