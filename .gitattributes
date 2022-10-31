@@ -2,11 +2,11 @@
 *.php linguist-language=PHP
 
 # Exclude from diffs
-.github        linguist-generated
+.github/       linguist-generated
 .gitattributes linguist-generated
 .gitignore     linguist-generated
 .gitkeep       linguist-generated
-assets/*       linguist-generated
+assets/       linguist-generated
 CHANGELOG.md   linguist-generated
 *.xml          linguist-generated
 *.min.js       linguist-generated
@@ -20,7 +20,7 @@ CHANGELOG.md   linguist-generated
 phpcs.xml      export-ignore
 
 # Exclude from language stats
-assets/* linguist-vendored
+assets/ linguist-vendored
 *.md     linguist-vendored
 *.xml    linguist-vendored
 *.txt    linguist-vendored
