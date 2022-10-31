@@ -25,7 +25,7 @@ It's one step up from putting `<?php include('header_file.php'); ?>` at the top 
 ## Get Started
 
 1. Download this repo to your local dev environment.
-2. In your code editor, open `/content/site-data.json` and edit for your site.
+2. In your code editor, open `/content/data/site-data.json` and edit for your site.
 3. Create/edit page content (inc. `_header.php`/`_footer.php` content).
 4. Drop in your assets (images, CSS, scripts) to the appropriate `assets/*` directory.
 5. *Optional*: if running in a subdirectory, open up the root `.htaccess` file and comment-out each "Option 1" and uncomment each "Option 2" (replacing the 'your_dir' placeholders).
