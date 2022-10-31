@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+- Moved location of `site-data.json` file.
 - Code now PSR-12 compliant.
+- Added placeholder files in some dirs
 
 ### Added
 

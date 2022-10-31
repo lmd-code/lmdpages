@@ -68,6 +68,7 @@ class Config
         'styles' => '/assets/styles',
         'content' => '/content',
         'blocks' => '/content/blocks',
+        'data' => '/content/data',
     ];
 
     /**
@@ -98,7 +99,7 @@ class Config
     {
         self::$rootPath = $rootPath;
         self::$rootDir = trim($rootDir, '/');
-        $dataSrc = ($dataSrc !== '') ? $dataSrc : self::$dirs['content'] . '/' . self::$defaultJson;
+        $dataSrc = ($dataSrc !== '') ? $dataSrc : self::$dirs['data'] . '/' . self::$defaultJson;
         self::$data = self::getSiteData($dataSrc);
         self::$route = self::getRoute();
     }

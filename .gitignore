@@ -1,12 +1,6 @@
-# ignore libraries directory inside assets
-assets/libs/
-
-# ignore vendor directory
-vendor/
-
-# ignore dev directory
+# Ignore files and folders
+.github/
 dev/
-
-# ignore log and tmp files
+vendor/
 *.log
 *.tmp
